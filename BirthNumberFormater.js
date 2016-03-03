@@ -17,7 +17,10 @@ self.init = function() {
                 var elementValue = self.getElementValue();
                 var singleChar = e.key || String.fromCharCode(e.keyCode);
                 var reg = new RegExp('^[0-9]$');
-                if(reg.test(singleChar)) {
+                //fix for firefox
+                if( singleChar == "ArrowLeft" || singleChar == "ArrowRight") {
+                    return true;
+                } else if (reg.test(singleChar)) {
                   //  var finalElement = self.getNumberOnly(elementValue);//+singleChar;
                     var endValue = self.getNumberEnding(elementValue);
                     //var presentValue = self.getElement();
@@ -156,3 +159,4 @@ self.setCaretPosition = function(caretPos) {
 };
 self.init();
 }
+
